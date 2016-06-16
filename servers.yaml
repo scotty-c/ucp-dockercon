@@ -1,0 +1,62 @@
+---  
+- 
+  box: scottyc/ubuntu-14-04-puppet-kernel-4-2 
+  cpu: 2
+  ip: "172.17.10.101"
+  name: ucp-01
+  forward_ports:
+      - { guest: 443, host: 8443 }
+  ram: 4096
+  shell_commands: 
+      - { shell: 'apt-get update -y' }
+      - { shell: 'apt-get install -y wget git' }
+      - { shell: 'mkdir ~/.docker || true' }
+      - { shell: 'mkdir /etc/docker/ || true && cp /vagrant/docker_subscription.lic /etc/docker/subscription.lic' }
+      - { shell: 'echo -e "172.17.10.101 ucp-01\n172.17.10.102 ucp-02\n172.17.10.103 ucp-03">/etc/hosts'}
+      - { shell: '/opt/puppet/bin/gem install r10k && ln -s /opt/puppet/bin/r10k /usr/bin/r10k || true'}
+      - { shell: 'cp /home/vagrant/ucp-01/Puppetfile /tmp && cd /tmp && r10k puppetfile install --verbose' }
+      - { shell: 'cp /home/vagrant/ucp-01/modules/* -R /tmp/modules || true' }
+
+
+- 
+  box: scottyc/ubuntu-14-04-puppet-kernel-4-2  
+  cpu: 2
+  ip: "172.17.10.102"
+  name: ucp-02
+  forward_ports:
+      - { guest: 443, host: 9443 }
+  ram: 4096
+  shell_commands: 
+      - { shell: 'apt-get update -y' }
+      - { shell: 'apt-get install -y wget git' }
+      - { shell: 'mkdir ~/.docker || true' }
+      - { shell: 'mkdir /etc/docker/ || true && cp /vagrant/docker_subscription.lic /etc/docker/subscription.lic' }
+      - { shell: 'echo -e "172.17.10.101 ucp-01\n172.17.10.102 ucp-02\n172.17.10.103 ucp-03">/etc/hosts'}
+      - { shell: '/opt/puppet/bin/gem install r10k && ln -s /opt/puppet/bin/r10k /usr/bin/r10k || true'}
+      - { shell: 'cp /home/vagrant/ucp-02/Puppetfile /tmp && cd /tmp && r10k puppetfile install --verbose' }
+      - { shell: 'cp /home/vagrant/ucp-02/modules/* -R /tmp/modules || true' }      
+
+- 
+  box: scottyc/ubuntu-14-04-puppet-kernel-4-2  
+  cpu: 2
+  ip: "172.17.10.103"
+  name: ucp-03
+  forward_ports:
+      - { guest: 443, host: 10443 }
+  ram: 4096
+  shell_commands: 
+      - { shell: 'apt-get update -y' }
+      - { shell: 'apt-get install -y wget git' }
+      - { shell: 'mkdir ~/.docker || true' }
+      - { shell: 'mkdir /etc/docker/ || true && cp /vagrant/docker_subscription.lic /etc/docker/subscription.lic' }
+      - { shell: 'echo -e "172.17.10.101 ucp-01\n172.17.10.102 ucp-02\n172.17.10.103 ucp-03">/etc/hosts'}
+      - { shell: '/opt/puppet/bin/gem install r10k && ln -s /opt/puppet/bin/r10k /usr/bin/r10k || true'}
+      - { shell: 'cp /home/vagrant/ucp-03/Puppetfile /tmp && cd /tmp && r10k puppetfile install --verbose' } 
+      - { shell: 'cp /home/vagrant/ucp-03/modules/* -R /tmp/modules || true' }      
+
+
+
+
+
+
+
