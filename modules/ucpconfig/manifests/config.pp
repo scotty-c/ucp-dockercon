@@ -11,7 +11,7 @@ class ucpconfig::config (
   ) {
 
 
-  package { ['curl', 'zip', 'jq']:
+  package { ['zip', 'jq']:
     ensure => installed,
     } ->
 

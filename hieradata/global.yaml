@@ -4,7 +4,7 @@ ucpconfig::ucp_deploy_node: ucp-03
 ucpconfig::ucp_url: https://172.17.10.101
 ucpconfig::ucp_username: admin        
 ucpconfig::ucp_password: orca 
-ucpconfig::ucp_version: 1.1.0
+ucpconfig::ucp_version: 1.1.2
 ucpconfig::ucp_host_address: "%{::ipaddress_eth1}"             
 ucpconfig::ucp_subject_alternative_names: "%{::ipaddress_eth0}" 
 ucpconfig::ucp_external_ca: false              
